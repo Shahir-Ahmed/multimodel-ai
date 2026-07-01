@@ -15,6 +15,8 @@ import uuid
 import httpx
 from fastapi import FastAPI, File, Form, HTTPException, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.middleware.gzip import GZipMiddleware
+
 from google.genai import types
 from pydantic import BaseModel
 
@@ -23,13 +25,14 @@ from services.response_service import gemini_response, groq_response, generate_p
 from utils.pdf_utils import pdf_text_from_bytes
 
 app = FastAPI(title="Multimodel AI API")
+app.add_middleware(GZipMiddleware, minimum_size=1000)
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:5173",
-    "https://multimodel-ai-alpha.vercel.app/"
     ],
+    allow_origin_regex=r"https://.*\.vercel\.app",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
