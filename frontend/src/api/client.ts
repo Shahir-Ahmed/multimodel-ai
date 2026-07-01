@@ -1,6 +1,6 @@
 import type { Provider } from "../types";
 
-const API_BASE = import.meta.env.VITE_API_BASE_URL ?? "http://localhost:8000";
+const API_BASE = import.meta.env.VITE_API_BASE_URL ?? "https://multimodel-ai-production.up.railway.app/";
 
 async function request<T>(path: string, options: RequestInit = {}): Promise<T> {
   const isFormData = options.body instanceof FormData;
