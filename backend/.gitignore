@@ -1,0 +1,15 @@
+# pyhton cache
+__pycache__/
+*.pyc
+
+# virtual variables
+.env
+.env.*
+
+# virtual environments
+.venv/
+venv/
+
+# os files
+.DS_Store
+Thumbs.db

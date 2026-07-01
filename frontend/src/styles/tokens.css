@@ -1,0 +1,51 @@
+:root {
+  /* Surfaces - near-black console, not pure black */
+  --bg-canvas: #121317;
+  --bg-surface: #1b1d23;
+  --bg-surface-raised: #23252d;
+  --border-hairline: #2c2f38;
+  --border-strong: #3a3d48;
+
+  /* Text */
+  --text-primary: #ecedf0;
+  --text-secondary: #9ca0ac;
+  --text-muted: #6b6f7a;
+
+  /* Engine accents - Gemini (breadth / reasoning) reads cool violet,
+     Groq (raw inference speed) reads warm amber. Every control or
+     message tied to "whichever engine answered" inherits one of these. */
+  --gemini: #8c7cff;
+  --gemini-dim: rgba(140, 124, 255, 0.14);
+  --gemini-text: #c9bfff;
+  --gemini-border: rgba(140, 124, 255, 0.4);
+
+  --groq: #ff9d4d;
+  --groq-dim: rgba(255, 157, 77, 0.14);
+  --groq-text: #ffc18c;
+  --groq-border: rgba(255, 157, 77, 0.4);
+
+  /* Semantic */
+  --danger: #ff6b6b;
+  --danger-dim: rgba(255, 107, 107, 0.14);
+  --success: #6fcf97;
+
+  /* Type */
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-mono: "IBM Plex Mono", "SFMono-Regular", Menlo, monospace;
+
+  /* Spacing */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+
+  /* Radius */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-pill: 999px;
+}
