@@ -28,7 +28,7 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:5173",
-    "https://multimodel-ai-production.up.railway.app"
+    "https://multimodel-ai-alpha.vercel.app/"
     ],
     allow_credentials=True,
     allow_methods=["*"],
