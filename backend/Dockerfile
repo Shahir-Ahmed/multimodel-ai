@@ -12,6 +12,7 @@ COPY . .
 EXPOSE 8000
 
 # Railway assigns its own $PORT at runtime and routes traffic to it - it
-# does not respect a hardcoded port. Using the shell form here so $PORT is
-# expanded, with 8000 as a local/docker-compose fallback when it's unset.
-CMD uvicorn main:app --host 0.0.0.0 --port ${PORT:-8000}
+# does not respect a hardcoded port. JSON-array form wrapping sh -c so
+# $PORT is expanded (falls back to 8000 locally) while still satisfying
+# Docker's recommended exec-form signal handling.
+CMD ["sh", "-c", "uvicorn main:app --host 0.0.0.0 --port ${PORT:-8000}"]
