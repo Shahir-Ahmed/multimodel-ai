@@ -1,6 +1,6 @@
 import type { Provider } from "../types";
 
-const API_BASE = (import.meta as any).env.VITE_API_BASE_URL ?? "https://multimodel-ai-backend.vercel.app/";
+const API_BASE = (import.meta as any).env.VITE_API_BASE_URL ?? "https://multimodel-ai-backend.vercel.app";
 
 async function request<T>(path: string, options: RequestInit = {}): Promise<T> {
   const isFormData = options.body instanceof FormData;
