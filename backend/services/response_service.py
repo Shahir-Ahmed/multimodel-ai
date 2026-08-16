@@ -14,7 +14,7 @@ def gemini_response(client, history):
     )
 
     response = client.models.generate_content(
-        model="gemini-3.6-flash",
+        model="gemini-2.5-flash",
         contents=contents,
         config = types.GenerateContentConfig(
             tools = [grounding_tool],
@@ -43,7 +43,7 @@ def groq_response(client, history):
 def generate_pdf_response(client, pdf_part, pdf_text, prompt, provider):
     if provider == "gemini":
         response = client.models.generate_content(
-            model="gemini-3.6-flash",
+            model="gemini-2.5-flash",
             contents=[pdf_part, prompt],
             config=types.GenerateContentConfig(
                 system_instruction="Answer within 200 characters"
