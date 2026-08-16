@@ -220,7 +220,8 @@ disappearing-history bug stays fixed (`conversations.test.tsx`).
 ## What's deliberately not included
 
 This covers a small, real project rather than a generic enterprise
-frontend template — there's no CI/CD pipeline or sprint-by-sprint estimate
-here, since those didn't seem useful for a two-screen tool at this stage.
-Happy to add a GitHub Actions workflow or auth layer if and when this needs
-to go further than what's live now.
+frontend template — there's no CI/CD pipeline, deployment config, or
+sprint-by-sprint estimate here, since those didn't seem useful for a
+two-screen tool at this stage. Happy to add a GitHub Actions workflow,
+Docker setup, or auth layer if and when this needs to go further than
+local use.
