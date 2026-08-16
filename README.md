@@ -5,6 +5,19 @@ a PDF (by file or URL) and ask questions about it. This was originally a
 terminal app driven by `input()`/`print()`; this adds a thin FastAPI layer
 over the existing client/service code, plus a React + TypeScript frontend.
 
+## Live demo
+
+**[multimodel-ai-alpha.vercel.app](https://multimodel-ai-alpha.vercel.app)**
+
+Open that link in any browser — nothing to install, no account needed.
+Pick Gemini or Groq at the top and start chatting, or attach a PDF via the
+paperclip icon to ask questions about a document.
+
+The frontend is hosted on Vercel; the FastAPI backend runs on Railway
+(`backend/Dockerfile`). Vercel builds the frontend against
+`VITE_API_BASE_URL`, pointed at the Railway backend's public URL, so the
+two deploy independently of each other.
+
 ## Before anything else: rotate your API keys
 
 The uploaded project's `.env` file contained live-looking Gemini and Groq
@@ -184,11 +197,30 @@ npm test          # or: make test, if using Docker
 conversation store itself — including a test asserting the original
 disappearing-history bug stays fixed (`conversations.test.tsx`).
 
+## Deployment notes
+
+- **Backend (Railway):** built from `backend/Dockerfile`. Railway assigns
+  its own `$PORT` at runtime and routes the public domain to it — the
+  Dockerfile's `CMD` binds to `${PORT:-8000}` (falling back to 8000 for
+  local/non-Railway use) rather than a hardcoded port, since a mismatch
+  between the port the app listens on and the port Railway's proxy targets
+  is what causes an "Application failed to respond" error. If Railway
+  reassigns the port on a future deploy, double-check **Settings →
+  Networking** on the service shows the same port number the Deploy Logs
+  report (`Uvicorn running on http://0.0.0.0:<port>`).
+- **CORS:** `backend/main.py` allows `http://localhost:5173` for local dev
+  plus any `https://*.vercel.app` origin via `allow_origin_regex`, so
+  Vercel preview deployments work without extra config.
+- **Environment variables:** `GEMINI_API_KEY` and `GROQ_API_KEY` are set
+  directly in Railway's **Variables** tab, not committed anywhere — the
+  repo's `.env` files stay local/gitignored as described above.
+- **Frontend (Vercel):** builds `frontend/` with `VITE_API_BASE_URL` set to
+  the Railway backend's public URL.
+
 ## What's deliberately not included
 
 This covers a small, real project rather than a generic enterprise
-frontend template — there's no CI/CD pipeline, deployment config, or
-sprint-by-sprint estimate here, since those didn't seem useful for a
-two-screen tool at this stage. Happy to add a GitHub Actions workflow,
-Docker setup, or auth layer if and when this needs to go further than
-local use.
+frontend template — there's no CI/CD pipeline or sprint-by-sprint estimate
+here, since those didn't seem useful for a two-screen tool at this stage.
+Happy to add a GitHub Actions workflow or auth layer if and when this needs
+to go further than what's live now.

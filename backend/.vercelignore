@@ -1,0 +1,13 @@
+# Vercel's built-in default-ignore list only covers .env.local / .env.*.local,
+# NOT the plain .env / .env.example convention this project uses - so those
+# have to be excluded explicitly or a local `vercel deploy` could upload them
+# as part of the deployment source. Real secrets belong in Vercel's
+# Environment Variables settings, never in the deployed source.
+.env
+.env.*
+
+__pycache__/
+*.pyc
+.venv/
+venv/
+.git
